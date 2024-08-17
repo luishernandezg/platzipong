@@ -1,0 +1,53 @@
+[gd_scene load_steps=5 format=3 uid="uid://db14xy4wlot0u"]
+
+[ext_resource type="PackedScene" uid="uid://d1bfsh66s3v3p" path="res://Player.tscn" id="1_3lku3"]
+
+[sub_resource type="GDScript" id="GDScript_2l8dd"]
+script/source = "extends Node2D
+
+
+# Called when the node enters the scene tree for the first time.
+func _ready() -> void:
+	pass # Replace with function body.
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+"
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_43r6y"]
+size = Vector2(1920, 50)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_73mei"]
+size = Vector2(50, 1080)
+
+[node name="Level" type="Node2D"]
+script = SubResource("GDScript_2l8dd")
+
+[node name="TopWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TopWall"]
+position = Vector2(960, -25)
+shape = SubResource("RectangleShape2D_43r6y")
+
+[node name="BottomWall" type="StaticBody2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="BottomWall"]
+position = Vector2(960, 1105)
+shape = SubResource("RectangleShape2D_43r6y")
+
+[node name="PointZonePlayer" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PointZonePlayer"]
+position = Vector2(-25, 540)
+shape = SubResource("RectangleShape2D_73mei")
+
+[node name="PointZoneOponent" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PointZoneOponent"]
+position = Vector2(1945, 540)
+shape = SubResource("RectangleShape2D_73mei")
+
+[node name="Player" parent="." instance=ExtResource("1_3lku3")]
+position = Vector2(50, 460)
