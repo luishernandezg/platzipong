@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://db14xy4wlot0u"]
+[gd_scene load_steps=10 format=3 uid="uid://db14xy4wlot0u"]
 
 [ext_resource type="PackedScene" uid="uid://d1bfsh66s3v3p" path="res://Player.tscn" id="1_3lku3"]
 [ext_resource type="Script" path="res://level.gd" id="1_cl5hf"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" path="res://oponent.gd" id="3_k4dp7"]
 [ext_resource type="PackedScene" uid="uid://7l3xbojv2k6x" path="res://ball.tscn" id="3_ueyuh"]
 [ext_resource type="Script" path="res://ball.gd" id="4_wpfal"]
+[ext_resource type="FontFile" uid="uid://ow2iluejd32j" path="res://PoetsenOne-Regular.ttf" id="5_wliji"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43r6y"]
 size = Vector2(1920, 50)
@@ -34,9 +35,9 @@ shape = SubResource("RectangleShape2D_43r6y")
 position = Vector2(-25, 540)
 shape = SubResource("RectangleShape2D_73mei")
 
-[node name="PointZoneOponent" type="Area2D" parent="."]
+[node name="PointZoneOpponent" type="Area2D" parent="."]
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PointZoneOponent"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="PointZoneOpponent"]
 position = Vector2(1945, 540)
 shape = SubResource("RectangleShape2D_73mei")
 
@@ -48,9 +49,35 @@ script = ExtResource("2_v7qq3")
 position = Vector2(1870, 460)
 script = ExtResource("3_k4dp7")
 
+[node name="ScorePlayer" type="Label" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+offset_left = -200.0
+offset_top = -400.0
+offset_right = 1720.0
+offset_bottom = 680.0
+theme_override_colors/font_color = Color(0.921569, 0.501961, 0.211765, 1)
+theme_override_fonts/font = ExtResource("5_wliji")
+theme_override_font_sizes/font_size = 32
+text = "Score Player"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ScoreOpponent" type="Label" parent="."]
+custom_minimum_size = Vector2(1920, 1080)
+offset_left = 200.0
+offset_top = -400.0
+offset_right = 2120.0
+offset_bottom = 680.0
+theme_override_colors/font_color = Color(0.921569, 0.501961, 0.211765, 1)
+theme_override_fonts/font = ExtResource("5_wliji")
+theme_override_font_sizes/font_size = 32
+text = "Opponent"
+horizontal_alignment = 1
+vertical_alignment = 1
+
 [node name="Ball" parent="." instance=ExtResource("3_ueyuh")]
 position = Vector2(948, 522)
 script = ExtResource("4_wpfal")
 
 [connection signal="body_entered" from="PointZonePlayer" to="." method="_on_point_zone_player_body_entered"]
-[connection signal="body_entered" from="PointZoneOponent" to="." method="_on_point_zone_oponent_body_entered"]
+[connection signal="body_entered" from="PointZoneOpponent" to="." method="_on_point_zone_oponent_body_entered"]
