@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://db14xy4wlot0u"]
+[gd_scene load_steps=11 format=3 uid="uid://db14xy4wlot0u"]
 
 [ext_resource type="PackedScene" uid="uid://d1bfsh66s3v3p" path="res://Player.tscn" id="1_3lku3"]
 [ext_resource type="Script" path="res://level.gd" id="1_cl5hf"]
@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://7l3xbojv2k6x" path="res://ball.tscn" id="3_ueyuh"]
 [ext_resource type="Script" path="res://ball.gd" id="4_wpfal"]
 [ext_resource type="FontFile" uid="uid://ow2iluejd32j" path="res://PoetsenOne-Regular.ttf" id="5_wliji"]
+[ext_resource type="AudioStream" uid="uid://dftrenxfeovjd" path="res://audio-bounce.ogg" id="8_gm03i"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_43r6y"]
 size = Vector2(1920, 50)
@@ -79,5 +80,11 @@ vertical_alignment = 1
 position = Vector2(948, 522)
 script = ExtResource("4_wpfal")
 
+[node name="AudioCollision" type="AudioStreamPlayer" parent="Ball"]
+stream = ExtResource("8_gm03i")
+
+[node name="RestartTimer" type="Timer" parent="."]
+
 [connection signal="body_entered" from="PointZonePlayer" to="." method="_on_point_zone_player_body_entered"]
 [connection signal="body_entered" from="PointZoneOpponent" to="." method="_on_point_zone_oponent_body_entered"]
+[connection signal="timeout" from="RestartTimer" to="Ball" method="_on_restart_timer_timeout"]

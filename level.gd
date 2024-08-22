@@ -3,15 +3,20 @@ extends Node2D
 var playerScore = 0
 var opponentScore = 0
 
+func _ready() -> void:
+	_restart_game()
+
 func _process(delta: float) -> void:
 	$ScorePlayer.text = str(playerScore)
 	$ScoreOpponent.text = str(opponentScore)
+	
 
 func _restart_game():
 	$Ball.is_moving = false
 	$Ball.direction = Vector2.ZERO
 	$Ball.position = Vector2(960,540)
-	$Ball.reset_ball()
+	#$Ball.reset_ball()
+	$RestartTimer.start()
 
 
 func _on_point_zone_player_body_entered(body: Node2D) -> void:
